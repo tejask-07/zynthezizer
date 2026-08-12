@@ -1,19 +1,21 @@
 #include "raylib.h"
 
 int main() {
-  const int screenHeight = 800;
-  const int screenWidth = 650;
+  const int screenHeight = 1280;
+  const int screenWidth = 720;
 
-  InitWindow(screenWidth, screenHeight, "basic window");
+  InitWindow(screenWidth, screenHeight, "drawWave");
   SetTargetFPS(60);
 
   while (!WindowShouldClose()) {
+    Vector2 mouse = GetMousePosition();
+
     BeginDrawing();
 
     ClearBackground(RAYWHITE);
 
-    DrawText("window hai ji <3", 190, 200, 20, LIGHTGRAY);
-    DrawText("press esc to exit", 190, 240, 20, DARKGRAY);
+    DrawText("draw your waveform", 30, 30, 30, BLACK);
+    DrawCircle(static_cast<int>(mouse.x), static_cast<int>(mouse.y), 5.0f, RED);
 
     EndDrawing();
   }
