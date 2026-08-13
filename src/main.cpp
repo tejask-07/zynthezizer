@@ -5,6 +5,12 @@
 std::vector<std::vector<Vector2>> strokes;
 bool showCenterLine = true;
 
+float screenYtoAmplitude(float y, float screenHeight) {
+  float normalized = y / screenHeight;
+
+  return 1.0f - 2.0f * normalized;
+}
+
 int main() {
   const int screenWidth = 1280;
   const int screenHeight = 720;
@@ -29,6 +35,15 @@ int main() {
 
     if (IsMouseButtonDown(MOUSE_BUTTON_LEFT) && !strokes.empty()) {
       strokes.back().push_back(mouse);
+    }
+
+    if (!strokes.empty()) {
+      for (const auto &stroke : strokes) {
+        for (const auto &point : stroke) {
+          float amplitude =
+              screenYtoAmplitude(point.y, static_cast<float>(screenHeight));
+        }
+      }
     }
 
     BeginDrawing();
